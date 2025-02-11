@@ -42,4 +42,9 @@ public class AccountService {
     }
 
 
+    public boolean checkId(int accountId){
+        return accountRepository.findAccountByAccountId(accountId)!=null;
+    }
+
+
 }

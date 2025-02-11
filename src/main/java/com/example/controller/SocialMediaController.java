@@ -73,12 +73,25 @@ public class SocialMediaController {
     @PostMapping(value = "/login")
     public ResponseEntity login(@RequestBody Account account){
         Account actualAccount = accountService.login(account);
-        System.out.println(actualAccount);
         if(actualAccount!=null){
             return ResponseEntity.status(200).body(actualAccount);
         }else{
             return ResponseEntity.status(401).body("Invalid Login");
         }
+    }
+
+
+    @PostMapping(value = "/messages")
+    public ResponseEntity postMessage(@RequestBody Message message){
+        if(accountService.checkId(message.getPostedBy())) { //should be done in service layer if possible
+            Message actualMessage = messageService.addMessage(message);
+            if(actualMessage!=null){
+                return ResponseEntity.status(200).body(actualMessage);
+            }else{
+                return ResponseEntity.status(400).body("Bad Request");
+            }
+        }
+        return ResponseEntity.status(400).body("Bad Request");
     }
 
 /*
