@@ -14,4 +14,6 @@ public interface MessageRepository extends JpaRepository<Message, Long>  {
 
     void deleteByMessageId(int messageId);
 
+    List<Message> findMessagesByPostedBy(int postedBy);
+
 }

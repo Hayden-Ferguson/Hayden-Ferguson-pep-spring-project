@@ -125,4 +125,11 @@ public class SocialMediaController {
         return ResponseEntity.status(400).body("Bad Request");
     }
 
+
+    @GetMapping(value = "/accounts/{account_id}/messages")
+    public ResponseEntity getMessageByAccountId(@PathVariable Integer account_id){
+        return ResponseEntity.status(200).body(messageService.getMessagesByAccountId(account_id));
+    }
+
+
 }
