@@ -50,5 +50,14 @@ public class MessageService {
             return false;
         }
     }
+
+    public Message updateMessage(int messageId, String messageText){
+        Message message = getMessageById(messageId);
+        if (message!=null && messageText.length()>0 && messageText.length()<256){
+            message.setMessageText(messageText);
+            return messageRepository.save(message);
+        }
+        return null;
+    }
     
 }

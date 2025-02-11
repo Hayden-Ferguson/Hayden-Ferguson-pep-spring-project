@@ -117,4 +117,12 @@ public class SocialMediaController {
         return ResponseEntity.status(200).body(null);
     }
 
+
+    @PatchMapping(value = "/messages/{message_id}")
+    public ResponseEntity patchMessageById(@PathVariable Integer message_id, @RequestBody Message message){
+        Message newMessage = messageService.updateMessage(message_id, message.getMessageText());
+        if(newMessage!=null) return ResponseEntity.status(200).body(1);
+        return ResponseEntity.status(400).body("Bad Request");
+    }
+
 }
