@@ -35,4 +35,11 @@ public class AccountService {
     }
 
 
+    public Account login(Account account){
+        Account actualAccount = accountRepository.findAccountByUsername(account.getUsername());
+        if (actualAccount!= null && actualAccount.getPassword().equals(account.getPassword())) return actualAccount;
+        return null;
+    }
+
+
 }

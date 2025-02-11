@@ -69,6 +69,18 @@ public class SocialMediaController {
         }
     }
 
+
+    @PostMapping(value = "/login")
+    public ResponseEntity login(@RequestBody Account account){
+        Account actualAccount = accountService.login(account);
+        System.out.println(actualAccount);
+        if(actualAccount!=null){
+            return ResponseEntity.status(200).body(actualAccount);
+        }else{
+            return ResponseEntity.status(401).body("Invalid Login");
+        }
+    }
+
 /*
     @GetMapping(value = "/messages/{message_id}", params = {"message_id"})
     public ResponseBody getMessageById(@RequestParam String term, @PathVariable long message_id){
