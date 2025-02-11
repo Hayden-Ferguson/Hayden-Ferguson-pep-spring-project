@@ -101,10 +101,11 @@ public class SocialMediaController {
         return ResponseEntity.status(200).body(messageService.getAllMessages());
     }
 
-/*
-    @GetMapping(value = "/messages/{message_id}", params = {"message_id"})
-    public ResponseEntity getMessageById(@RequestParam String term, @PathVariable long message_id){
-        return term;
+
+    @GetMapping(value = "/messages/{message_id}")
+    public ResponseEntity getMessageById(@PathVariable Integer message_id){
+        Message message = messageService.getMessageById(message_id);
+        return ResponseEntity.status(200).body(message);
     }
-*/
+
 }
