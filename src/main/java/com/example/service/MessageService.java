@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import java.io.IOException;
+
 @Service
 @Transactional
 public class MessageService {
@@ -33,6 +35,20 @@ public class MessageService {
 
     public Message getMessageById(Integer messageId){
         return messageRepository.findMessageByMessageId(messageId);
+    }
+
+
+    public Boolean deleteMessage(int messageId){
+        try{ //threw exceptions before debugging
+            if (getMessageById(messageId)!=null){
+                messageRepository.deleteByMessageId(messageId);
+                return true;
+            }
+            return false;
+        }
+        catch(Exception e) {
+            return false;
+        }
     }
     
 }
