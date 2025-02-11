@@ -22,6 +22,7 @@ import org.springframework.http.MediaType;
 
 import java.util.List;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -94,9 +95,15 @@ public class SocialMediaController {
         return ResponseEntity.status(400).body("Bad Request");
     }
 
+
+    @GetMapping(value = "/messages")
+    public ResponseEntity getAllMessage(){
+        return ResponseEntity.status(200).body(messageService.getAllMessages());
+    }
+
 /*
     @GetMapping(value = "/messages/{message_id}", params = {"message_id"})
-    public ResponseBody getMessageById(@RequestParam String term, @PathVariable long message_id){
+    public ResponseEntity getMessageById(@RequestParam String term, @PathVariable long message_id){
         return term;
     }
 */

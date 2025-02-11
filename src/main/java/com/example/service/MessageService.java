@@ -24,5 +24,10 @@ public class MessageService {
         if (message.getMessageText().length()<1 || message.getMessageText().length()>255) return null;
         return messageRepository.save(message);
     }
+
+
+    public List<Message> getAllMessages(){
+        return messageRepository.findAll();
+    }
     
 }
